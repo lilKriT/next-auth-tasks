@@ -1,4 +1,5 @@
 import usePrisma from "@/lib/hooks/usePrisma";
+import TaskList from "./components/TaskList";
 
 export default async function Home() {
   const tasks = await usePrisma.task.findMany();
@@ -6,10 +7,7 @@ export default async function Home() {
   return (
     <main className="">
       <h1>Tasks.</h1>
-      <p>You have {tasks.length} tasks</p>
-      {tasks.map((task) => (
-        <p>Abc {task.id}</p>
-      ))}
+      <TaskList tasks={tasks} />
     </main>
   );
 }
