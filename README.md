@@ -22,6 +22,7 @@ Created by lilKriT
 - add `api/auth/[...nextauth]/route.ts` and the few lines of code
 - add `options.ts for it`
 - add necessary secrets
+- add image remote pattern if you want to use image
 
 That's it. Then to protect routes, you can use:
 

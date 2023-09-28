@@ -11,7 +11,7 @@ const options: NextAuthOptions = {
           ...profile,
           //   role: profile.role ?? "user",
           id: profile.sub,
-          image: profile.picture,
+          image: profile.picture, // without this line, you can't use image
         };
       },
       clientId: process.env.GOOGLE_CLIENT_ID as string,

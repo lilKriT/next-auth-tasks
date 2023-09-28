@@ -2,6 +2,7 @@ import { getServerSession } from "next-auth";
 import options from "./api/auth/[...nextauth]/options";
 import usePrisma from "@/lib/hooks/usePrisma";
 import TaskList from "./components/TaskList";
+import UserCard from "./components/UserCard";
 
 export default async function Home() {
   const session = await getServerSession(options);
@@ -20,6 +21,7 @@ export default async function Home() {
       <div className="container">
         {session ? <p>You're logged in.</p> : <p>Not logged in.</p>}
         <h1>Tasks.</h1>
+        <UserCard user={session?.user} />
         <TaskList tasks={tasks} />
       </div>
     </main>
