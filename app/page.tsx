@@ -18,11 +18,25 @@ export default async function Home() {
 
   return (
     <main className="min-h-screen flex justify-center">
-      <div className="container">
-        {session ? <p>You're logged in.</p> : <p>Not logged in.</p>}
-        <h1>Tasks.</h1>
+      <div className="container py-16">
+        {/* {session ? <p>You're logged in.</p> : <p>Not logged in.</p>} */}
+        {/* <h1>Tasks.</h1>
         <UserCard user={session?.user} />
-        <TaskList tasks={tasks} />
+        <TaskList tasks={tasks} /> */}
+        {session ? (
+          <>
+            <h1 className="text-4xl text-center">Your tasks:</h1>
+            <p>abc</p>
+          </>
+        ) : (
+          <>
+            <h1 className="text-4xl text-center">Hello, guest.</h1>
+            <p className="mt-8 mx-auto max-w-lg">
+              This app lets you organize your tasks. Log in to be able to use
+              it.
+            </p>
+          </>
+        )}
       </div>
     </main>
   );
