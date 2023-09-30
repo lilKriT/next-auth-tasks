@@ -18,13 +18,14 @@ export async function POST(request: NextRequest) {
   //   console.log("Session: ", session);
 
   const json = await request.json();
+  //   console.log("JSON: ", json);
 
   if (!json.title) {
     return NextResponse.json({ message: "Missing data" }, { status: 400 });
   }
 
   try {
-    const task = await usePrisma.task.create({ data: { ...json, userId: 1 } });
+    const task = await usePrisma.task.create(json);
   } catch (error) {
     return NextResponse.json({ message: error }, { status: 400 });
   }
