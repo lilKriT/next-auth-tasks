@@ -3,8 +3,9 @@ import GoogleProvider from "next-auth/providers/google";
 import { GoogleProfile } from "next-auth/providers/google";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { PrismaClient } from "@prisma/client";
+import usePrisma from "@/lib/hooks/usePrisma";
 
-const prisma = new PrismaClient();
+const prisma = usePrisma;
 
 const options: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
@@ -24,6 +25,30 @@ const options: NextAuthOptions = {
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
     }),
   ],
+  callbacks: {
+    async jwt({ token, user }) {
+      // if (user) token.role = user.role;
+
+      if (user) {
+        token.role = "added role";
+      }
+
+      console.log("Token: ", token);
+      console.log("User: ", user);
+      console.log("Lol");
+      return token;
+    },
+    // This you only need in client components
+    async session({ session, user }) {
+      // session.user.role = token.role;
+      session.user.id = user.id;
+
+      // console.log("Session: ", session);
+      // console.log("Token: ", token);
+      // console.log("User: ", user);
+      return session;
+    },
+  },
 };
 
 export default options;

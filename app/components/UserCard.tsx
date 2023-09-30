@@ -1,12 +1,13 @@
+import { User } from "next-auth";
 import Image from "next/image";
 
-type User =
-  | {
-      name?: string | null | undefined;
-      email?: string | null | undefined;
-      image?: string | null | undefined;
-    }
-  | undefined;
+// type User =
+//   | {
+//       name?: string | null | undefined;
+//       email?: string | null | undefined;
+//       image?: string | null | undefined;
+//     }
+//   | undefined;
 
 type props = {
   user: User;

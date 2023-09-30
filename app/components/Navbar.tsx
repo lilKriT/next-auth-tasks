@@ -20,14 +20,17 @@ const Navbar = async () => {
                 </Link>
               </li>
               <li>
-                <Link href={"/api/auth/signout"} className="navLink">
+                <Link
+                  href={"/api/auth/signout?callbackUrl=/"}
+                  className="navLink"
+                >
                   Log Out
                 </Link>
               </li>
             </>
           ) : (
             <li>
-              <Link href={"/api/auth/signin"} className="navLink">
+              <Link href={"/api/auth/signin?callbackUrl=/"} className="navLink">
                 Log In
               </Link>
             </li>

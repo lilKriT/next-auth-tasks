@@ -7,9 +7,11 @@ import TaskForm from "./components/TaskForm";
 
 export default async function Home() {
   const session = await getServerSession(options);
-  console.log("Session: ", session);
+  // console.log("Session: ", session);
 
-  const tasks = await usePrisma.task.findMany();
+  const tasks = await usePrisma.task.findMany({
+    where: { userId: { equals: session?.user.id } },
+  });
 
   // I could redirect unlogged user like this:
   // if (!session) {
@@ -22,7 +24,7 @@ export default async function Home() {
       <div className="container py-16">
         {session ? (
           <>
-            <UserCard user={session.user} />
+            {/* <UserCard user={session.user} /> */}
             <TaskList tasks={tasks} />
             <TaskForm />
           </>
@@ -39,3 +41,5 @@ export default async function Home() {
     </main>
   );
 }
+
+export const revalidate = 0;

@@ -29,3 +29,8 @@ That's it. Then to protect routes, you can use:
 - middleware with matcher
 - on server `const session = await getServerSession(options);` and `{session ? <p>You're logged in.</p> : <p>Not logged in.</p>}`
 - on client - create authprovider and add it to layout. Inside component - `use client` `import {useSession}` and use the session
+
+# Role Reminder:
+
+- you might need to add profile to options
+- add callbacks
