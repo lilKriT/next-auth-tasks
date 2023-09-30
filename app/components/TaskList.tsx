@@ -8,7 +8,7 @@ const TaskList = ({ tasks }: { tasks: ITask[] }) => {
       <ul>
         {tasks.map((task) => (
           <li key={task.id}>
-            <TaskCard />
+            <TaskCard task={task} />
           </li>
         ))}
       </ul>

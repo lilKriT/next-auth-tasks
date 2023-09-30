@@ -1,4 +1,5 @@
 "use client";
+import { useRouter } from "next/navigation";
 import { FieldValues, useForm } from "react-hook-form";
 
 const url = process.env.NEXT_PUBLIC_URL;
@@ -10,13 +11,15 @@ const TaskForm = () => {
     formState: { errors, isSubmitting },
   } = useForm();
 
+  const router = useRouter();
+
   const addTask = async (data: FieldValues) => {
     console.log("Adding a task");
     console.log("Form Data: ", data);
     console.log("JSON: ", JSON.stringify(data));
 
     // Throttle for testing purposes
-    const throttle = true;
+    const throttle = false;
     if (throttle) await new Promise((resolve) => setTimeout(resolve, 2000));
 
     try {
@@ -26,6 +29,7 @@ const TaskForm = () => {
       });
       const json = await res.json();
       console.log("Response: ", json);
+      router.refresh();
     } catch (error) {
       console.log("Catch: ", error);
     }
