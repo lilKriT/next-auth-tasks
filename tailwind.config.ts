@@ -11,6 +11,8 @@ const config: Config = {
       colors: {
         primary: "hsl(82.7, 78%, 55.5%)",
         secondary: "hsl(258.3, 89.5%, 66.3%)",
+        success: "hsl(160.1, 84.1%, 39.4%)",
+        danger: "hsl(349.7, 89.2%, 60.2%)",
       },
     },
   },

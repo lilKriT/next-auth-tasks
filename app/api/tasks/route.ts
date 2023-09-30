@@ -10,16 +10,23 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   const session = await getServerSession(options);
+
   if (!session) {
     return NextResponse.json({ message: "Not logged in" }, { status: 400 });
   }
 
-  console.log("Session: ", session);
+  //   console.log("Session: ", session);
 
   const json = await request.json();
 
   if (!json.title) {
     return NextResponse.json({ message: "Missing data" }, { status: 400 });
+  }
+
+  try {
+    const task = await usePrisma.task.create({ data: { ...json, userId: 1 } });
+  } catch (error) {
+    return NextResponse.json({ message: error }, { status: 400 });
   }
 
   return NextResponse.json({ message: "Added a task" });

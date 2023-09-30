@@ -7,7 +7,7 @@ import TaskForm from "./components/TaskForm";
 
 export default async function Home() {
   const session = await getServerSession(options);
-  // console.log("Session: ", session);
+  console.log("Session: ", session);
 
   const tasks = await usePrisma.task.findMany();
 
@@ -22,6 +22,7 @@ export default async function Home() {
       <div className="container py-16">
         {session ? (
           <>
+            <UserCard user={session.user} />
             <TaskList tasks={tasks} />
             <TaskForm />
           </>

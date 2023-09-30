@@ -34,21 +34,49 @@
 
   .btn {
     @apply outline;
+    @apply font-bold text-lg;
+    @apply px-4 py-2 rounded-xl;
+    @apply hover:brightness-125 hover:rounded-2xl;
+    @apply active:scale-95;
+    @apply duration-150 ease-in-out;
+    @apply disabled:cursor-not-allowed disabled:brightness-50;
   }
 
   .btn--primary {
+    @apply bg-primary text-neutral-950;
   }
 
   .btn--secondary {
+    @apply bg-secondary text-neutral-950;
   }
 
   .btn--success {
+    @apply bg-success;
   }
 
   .btn--danger {
+    @apply bg-danger;
   }
 
   .btn--small {
+  }
+
+  .form {
+    @apply shadow-[0_0_25px_5px] shadow-neutral-50/10;
+    @apply px-4 py-4 rounded-xl;
+  }
+
+  .formLabel {
+    @apply text-lg;
+  }
+
+  .formInput {
+    @apply bg-transparent text-lg;
+    @apply px-4 py-2 rounded;
+    @apply border-b border-transparent;
+    @apply bg-neutral-500/10;
+    @apply focus:outline-0 focus:border-primary;
+    @apply duration-150 ease-in-out;
   }
 }
 
