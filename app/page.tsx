@@ -3,6 +3,7 @@ import options from "./api/auth/[...nextauth]/options";
 import usePrisma from "@/lib/hooks/usePrisma";
 import TaskList from "./components/TaskList";
 import UserCard from "./components/UserCard";
+import TaskForm from "./components/TaskForm";
 
 export default async function Home() {
   const session = await getServerSession(options);
@@ -22,6 +23,7 @@ export default async function Home() {
         {session ? (
           <>
             <TaskList tasks={tasks} />
+            <TaskForm />
           </>
         ) : (
           <>
