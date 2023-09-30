@@ -6,7 +6,7 @@ import UserCard from "./components/UserCard";
 
 export default async function Home() {
   const session = await getServerSession(options);
-  console.log("Session: ", session);
+  // console.log("Session: ", session);
 
   const tasks = await usePrisma.task.findMany();
 
@@ -19,14 +19,9 @@ export default async function Home() {
   return (
     <main className="min-h-screen flex justify-center">
       <div className="container py-16">
-        {/* {session ? <p>You're logged in.</p> : <p>Not logged in.</p>} */}
-        {/* <h1>Tasks.</h1>
-        <UserCard user={session?.user} />
-        <TaskList tasks={tasks} /> */}
         {session ? (
           <>
-            <h1 className="text-4xl text-center">Your tasks:</h1>
-            <p>abc</p>
+            <TaskList tasks={tasks} />
           </>
         ) : (
           <>
