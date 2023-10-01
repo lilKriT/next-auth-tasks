@@ -36,7 +36,7 @@ const TaskForm = () => {
   };
 
   return (
-    <form className="form flex gap-4" onSubmit={handleSubmit(addTask)}>
+    <form className="form flex gap-4 mt-8" onSubmit={handleSubmit(addTask)}>
       <div className="grow">
         <label className="formLabel flex items-center gap-4">
           Title:

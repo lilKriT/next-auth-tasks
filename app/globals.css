@@ -24,8 +24,8 @@
   }
 
   .btn {
-    @apply outline;
-    @apply font-bold text-lg;
+    /* @apply outline; */
+    @apply font-bold text-lg flex;
     @apply px-4 py-2 rounded-xl;
     @apply hover:brightness-125 hover:rounded-2xl;
     @apply active:scale-95;
@@ -50,6 +50,8 @@
   }
 
   .btn--small {
+    @apply px-1 py-1 rounded-sm;
+    @apply hover:rounded-sm hover:scale-105;
   }
 
   .form {
