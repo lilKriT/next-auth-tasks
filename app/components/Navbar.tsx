@@ -18,11 +18,13 @@ const Navbar = async () => {
         <menu className="flex gap-2 justify-end">
           {session ? (
             <>
-              <li>
-                <Link href={"/extra"} className="navLink">
-                  Extra
-                </Link>
-              </li>
+              {session.user.role === "admin" && (
+                <li>
+                  <Link href={"/extra"} className="navLink">
+                    Extra
+                  </Link>
+                </li>
+              )}
               <li>
                 <Link
                   href={"/api/auth/signout?callbackUrl=/"}
