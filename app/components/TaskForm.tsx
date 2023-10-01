@@ -9,14 +9,15 @@ const TaskForm = () => {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
+    reset,
   } = useForm();
 
   const router = useRouter();
 
   const addTask = async (data: FieldValues) => {
-    console.log("Adding a task");
-    console.log("Form Data: ", data);
-    console.log("JSON: ", JSON.stringify(data));
+    // console.log("Adding a task");
+    // console.log("Form Data: ", data);
+    // console.log("JSON: ", JSON.stringify(data));
 
     // Throttle for testing purposes
     const throttle = false;
@@ -28,7 +29,8 @@ const TaskForm = () => {
         body: JSON.stringify(data),
       });
       const json = await res.json();
-      console.log("Response: ", json);
+      // console.log("Response: ", json);
+      reset(); // what is the best place for this?
       router.refresh();
     } catch (error) {
       console.log("Catch: ", error);
@@ -45,6 +47,7 @@ const TaskForm = () => {
             className="formInput grow"
             {...register("title", { required: "Task title is required!" })}
             placeholder="I want to..."
+            autoFocus
           />
           {errors.title && (
             <p className="text-red-500">{`${errors.title.message}`}</p>

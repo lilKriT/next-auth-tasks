@@ -71,6 +71,11 @@
     @apply focus:outline-0 focus:border-primary;
     @apply duration-150 ease-in-out;
   }
+
+  .formInput--slim {
+    @apply text-base;
+    @apply px-1 py-1;
+  }
 }
 
 @layer utilities {
