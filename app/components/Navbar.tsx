@@ -1,17 +1,21 @@
 import { getServerSession } from "next-auth";
 import Link from "next/link";
 import options from "../api/auth/[...nextauth]/options";
+import Greeting from "./Greeting";
 
 const Navbar = async () => {
   const session = await getServerSession(options);
 
   return (
     <header className="sticky top-0 flex justify-center border-b border-secondary/30">
-      <nav className="container mt-2 flex justify-between items-center">
+      <nav className="container mt-2 grid grid-cols-3">
         <Link href={"/"} className="logo">
           LOGO
         </Link>
-        <menu className="flex gap-2">
+        <div className="flex justify-center">
+          <Greeting />
+        </div>
+        <menu className="flex gap-2 justify-end">
           {session ? (
             <>
               <li>

@@ -1,5 +1,5 @@
 const Extra = () => {
-  return <div>Extra</div>;
+  return <div>This is a super secret page for admins only.</div>;
 };
 
 export default Extra;

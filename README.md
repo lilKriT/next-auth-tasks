@@ -34,3 +34,7 @@ That's it. Then to protect routes, you can use:
 
 - you might need to add profile to options
 - add callbacks
+
+## Useful Links
+
+[https://reacthustle.com/blog/extend-user-session-nextauth-typescript](https://reacthustle.com/blog/extend-user-session-nextauth-typescript)

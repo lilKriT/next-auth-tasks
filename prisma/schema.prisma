@@ -42,6 +42,7 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
+  role          Role      @default(user)
   tasks         Task[]
 }
 
@@ -51,6 +52,11 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+enum Role {
+  admin
+  user
 }
 
 model Task {
