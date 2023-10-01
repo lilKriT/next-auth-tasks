@@ -4,18 +4,9 @@ import { NextRequest, NextResponse } from "next/server";
 import options from "../auth/[...nextauth]/options";
 import { revalidatePath } from "next/cache";
 
+// TODO: remove this!
 export async function GET(request: NextRequest) {
-  // console.log("Trying");
-  // const session = await getServerSession(options);
-
-  // if (!session) {
-  //   return NextResponse.json({ message: "Not logged in" }, { status: 400 });
-  // }
-
-  // console.log("Session: ", session);
-  console.log("Ok");
-
-  const tasks = usePrisma.task.findMany();
+  const tasks = await usePrisma.task.findMany();
   return NextResponse.json(tasks);
 }
 
