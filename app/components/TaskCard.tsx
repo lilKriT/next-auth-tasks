@@ -13,12 +13,19 @@ const url = process.env.NEXT_PUBLIC_URL;
 
 const TaskCard = ({ task }: { task: ITask }) => {
   const [taskTitle, setTaskTitle] = useState(task.title);
+  const [taskCompleted, setTaskCompleted] = useState(task.completed);
   const [isEditing, setIsEditing] = useState(false);
   const router = useRouter();
 
   const editTask = async (taskEdit: Partial<ITask>) => {
-    console.log("Editing: ", taskEdit);
+    // console.log("Editing: ", taskEdit);
     try {
+      const res = await fetch(`${url}/api/tasks/${task.id}`, {
+        method: "PUT",
+        body: JSON.stringify(taskEdit),
+      });
+      setIsEditing(false);
+      router.refresh();
     } catch (error) {
       console.log(error);
     }
@@ -41,7 +48,7 @@ const TaskCard = ({ task }: { task: ITask }) => {
       {/* Title / Edit */}
       {!isEditing ? (
         <>
-          <h2>{task.title}</h2>
+          <h2 className={`${taskCompleted && "line-through"}`}>{task.title}</h2>
         </>
       ) : (
         <>
@@ -55,7 +62,18 @@ const TaskCard = ({ task }: { task: ITask }) => {
         </>
       )}
       {/* Buttons */}
-      <div className="flex gap-2">
+      <div className="flex gap-2 items-center">
+        {/* Checkbox */}
+        <input
+          type="checkbox"
+          className="appearance-none w-6 h-6 rounded-sm border border-primary cursor-pointer checked:bg-primary duration-150 ease-in-out"
+          checked={taskCompleted}
+          onChange={(e) => {
+            // console.log("Now I'm: ", e.target.checked);
+            setTaskCompleted(e.target.checked);
+            editTask({ completed: e.target.checked });
+          }}
+        />
         {!isEditing ? (
           <>
             <button
@@ -77,7 +95,10 @@ const TaskCard = ({ task }: { task: ITask }) => {
               <AiOutlineCheck />
             </button>
             <button
-              onClick={() => setIsEditing(false)}
+              onClick={() => {
+                setIsEditing(false);
+                setTaskTitle(task.title);
+              }}
               className="btn btn--danger btn--small"
             >
               <AiOutlineClose />

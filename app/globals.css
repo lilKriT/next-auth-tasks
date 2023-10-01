@@ -52,6 +52,7 @@
   .btn--small {
     @apply px-1 py-1 rounded-sm;
     @apply hover:rounded-sm hover:scale-105;
+    @apply active:scale-90;
   }
 
   .form {

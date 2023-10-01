@@ -11,6 +11,7 @@ export default async function Home() {
 
   const tasks = await usePrisma.task.findMany({
     where: { userId: { equals: session?.user.id } },
+    orderBy: { id: "asc" },
   });
 
   // I could redirect unlogged user like this:
