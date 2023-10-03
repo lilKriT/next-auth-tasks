@@ -1,5 +1,5 @@
 import { DefaultSession, DefaultUser } from "next-auth";
-// import { JWT, DefaultJWT } from "next-auth/jwt";
+import { JWT, DefaultJWT } from "next-auth/jwt";
 
 export enum Role {
   user = "user",

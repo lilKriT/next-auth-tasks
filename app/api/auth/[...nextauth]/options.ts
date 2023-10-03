@@ -1,9 +1,10 @@
 import { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import { GoogleProfile } from "next-auth/providers/google";
-import { PrismaAdapter } from "@auth/prisma-adapter";
+// import { PrismaAdapter } from "@auth/prisma-adapter";
 import usePrisma from "@/lib/hooks/usePrisma";
-import { Adapter } from "next-auth/adapters";
+// import { Adapter } from "next-auth/adapters";
+import { PrismaAdapter } from "@next-auth/prisma-adapter";
 
 const prisma = usePrisma;
 
@@ -11,20 +12,20 @@ const options: NextAuthOptions = {
   session: {
     strategy: "jwt",
   },
-  adapter: PrismaAdapter(prisma) as Adapter, // the as
+  adapter: PrismaAdapter(prisma), // the as adapter part is important
   providers: [
     GoogleProvider({
       // This is causing issues when using prisma adapter!
-      // Apparently this was NOT the problem. (I don't know what was.)
-      profile(profile: GoogleProfile) {
-        // console.log("profile: ", profile);
-        return {
-          ...profile,
-          role: profile.role ?? "user",
-          id: profile.sub,
-          image: profile.picture, // without this line, you can't use image
-        };
-      },
+      // This TOTALLY was the problem.
+      // profile(profile: GoogleProfile) {
+      //   console.log("profile: ", profile);
+      //   return {
+      //     ...profile,
+      //     // role: profile.role ?? "user",
+      //     id: profile.sub,
+      //     // image: profile.picture, // without this line, you can't use image
+      //   };
+      // },
       clientId: process.env.GOOGLE_CLIENT_ID as string,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
     }),
@@ -40,7 +41,7 @@ const options: NextAuthOptions = {
       return token;
     },
     // This you only need in client components
-    async session({ session, user, token }) {
+    async session({ session, token }) {
       // session.user.id = user.id;
       // session.user.role = user.role;
 
